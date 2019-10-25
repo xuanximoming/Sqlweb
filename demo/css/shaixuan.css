@@ -1,0 +1,205 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    color: gray;
+    font-family: "Microsoft YaHei";
+}
+
+html,
+body {
+    background-color: #1b1b1b;
+    background-image: linear-gradient(#DDDDDD, #A5ACAC);
+}
+
+span {
+    display: inline-block;
+    margin-right: 10px;
+    width: 105px;
+}
+
+select {
+    display: inline-block;
+    height: 25px;
+    width: 170px;
+    border: 0;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url("../img/arrow.png") no-repeat scroll right center transparent;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 98%;
+    background-image: linear-gradient(#FFF, #DDDDDD);
+}
+
+.wrapper .title {
+    margin-top: 10px;
+    text-align: center;
+    background-color: #FFF;
+    height: 70px;
+    line-height: 70px;
+}
+
+.wrapper .title .logo {
+    display: block;
+    position: absolute;
+    margin-top: 25px;
+    width: 206px;
+    height: 23px;
+    background-image: url(../img/logo.png);
+}
+
+.wrapper .title .titlename {
+    display: inline-block;
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+.wrapper .search {
+    height: 110px;
+}
+
+.wrapper .search p {
+    padding: 0px;
+}
+
+.wrapper .search1 {
+    margin-top: 10px;
+}
+
+.wrapper .search .width {
+    width: 170px;
+    border: 1px solid;
+}
+
+.wrapper .search input {
+    width: 100%;
+    height: 25px;
+    border: 0;
+}
+
+.wrapper .search .date {
+    margin-right: 0;
+}
+
+.wrapper .search .split {
+    width: 50px;
+    margin-right: 0;
+}
+
+.wrapper .contrl input {
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100px;
+    color: #FFF;
+    background-color: #8ac007;
+    margin: 10px 20px 10px 0;
+}
+
+.wrapper .contrl input:hover {
+    background-color: #fff;
+    color: #90b575;
+}
+
+table {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+th {
+    white-space: nowrap;
+    border: 1px solid;
+    padding-right: 20px;
+    font-weight: normal;
+}
+
+/* .wrapper .table .mytablethead .truethead tr{
+    white-space: nowrap;
+}
+.wrapper .table .mytablethead .truethead th{
+    display: inline-block;
+} */
+.table {
+    overflow-x: auto;
+    /* overflow-y: hidden;; */
+    height: 450px;
+}
+
+/* .mytabletbody{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 300px;
+} */
+.table table thead tr th {
+    background-color: #3F3F3F;
+    color: #FFFFF3;
+}
+
+.table table tbody tr {
+    font-size: 11pt;
+    line-height: 30px;
+}
+
+.wrapper .echarts {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F3F3F3;
+    display: none;
+}
+
+.wrapper .echarts .echart
+ {
+    display: inline-block;
+    width: 500px;
+}
+
+.wrapper .echarts .name-title {
+    font-size: 16px;
+    color: #131312;
+    text-align: center;
+}
+
+.Pie {
+    height: 200px;
+}
+.Bar{
+    height: 350px;
+}
+
+.update {
+    position: absolute;
+    left: 0;
+    top: 0px;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    font-size: 17px;
+    display: none;
+}
+
+.close p {
+    text-align: center;
+}
+
+#close,#closeechar {
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100px;
+    color: #FFF;
+    background-color: #8ac007;
+    margin-right: 20px;
+}
+
+.wrapper .table .tbody .selected {
+    background-color: coral;
+}

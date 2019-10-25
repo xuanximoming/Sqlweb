@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>质量信息管理系统</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/shaixuan.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title">
+            <div class="logo"></div>
+            <div class="titlename">质量信息管理系统-筛选</div>
+        </div>
+        <div class="search">
+            <p>
+                <span>产品线名称</span>
+                <span class="width">
+                    <select class="get blink" name="cpxmc" id="cpxmc">
+                        <option value=""></option>
+                        <option value="风冷">风冷</option>
+                        <option value="水冷">水冷</option>
+                        <option value="单元机">单元机</option>
+                        <option value="末端">末端</option>
+                        <option value="通讯">通讯</option>
+                        <option value="DAK">DAK</option>
+                        <option value="轨道交通">轨道交通</option>
+                        <option value="冷链">冷链</option>
+                    </select>
+                </span>
+                <span>原因分类</span>
+                <span class="width">
+                    <select class="get" name="yyfl" id="yyfl">
+                        <option value=""></option>
+                        <option value="设计不良">设计不良</option>
+                        <option value="制造不良">制造不良</option>
+                        <option value="来料不良">来料不良</option>
+                        <option value="安装不良">安装不良</option>
+                        <option value="使用不当">使用不当</option>
+                    </select>
+                </span>
+                <span>问题来源</span>
+                <span class="width">
+                    <select class="get" name="wtly" id="wtly">
+                        <option value=""></option>
+                        <option value="市场反馈">市场反馈</option>
+                        <option value="生产反馈">生产反馈</option>
+                        <option value="来料反馈">来料反馈</option>
+                    </select>
+                </span>
+            </p>
+            <p class="search1">
+                <span>故障名称</span>
+                <span class="width"><input id="gzmc" class="get" type="text" value="" /></span>
+                <span>涉及零部件</span>
+                <span class="width"><input id="sjlbj" class="get" type="text" value="" /></span>
+            </p>
+            <p class="search1">
+                <span>记录人</span>
+                <span class="width"><input id="jlr" class="get" type="text" value="" /></span>
+                <span>发生日期</span>
+                <span class="date width"><input id="fssj1" class="get" type="date" value="" /></span>
+                <span class="split">———</span>
+                <span class="width"><input id="fssj2" class="get" type="date" value="" /></span>
+            </p>
+
+        </div>
+        <div class="contrl">
+            <input id="search" type="button" value="查询">
+            <input id="exp" type="button" value="导出">
+            <input id="del" type="button" value="删除">
+            <input type="file" id="file" style="display: none;"
+                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+            <input id="imp" type="button" value="导入">
+            <input id="impdemo" type="button" value="下载模板">
+            <input id="Chart" type="button" value="生成图表">
+        </div>
+        <div class="table">
+            <!-- <div class="mytablethead">
+                <table>
+                    <thead class="truethead">
+                        <tr>
+                            <th>序号</th>
+                            <th>问题来源</th>
+                            <th>发生时间</th>
+                            <th>记录人</th>
+                            <th>客户名称</th>
+                            <th>网点</th>
+                            <th>机组铭牌号</th>
+                            <th>产品线名称</th>
+                            <th>产品型号</th>
+                            <th>发生数量</th>
+                            <th>问题描述</th>
+                            <th>失效后果</th>
+                            <th>严重度</th>
+                            <th>故障名称</th>
+                            <th>故障原因</th>
+                            <th>原因分类</th>
+                            <th>现场整改方案</th>
+                            <th>长久改善措施</th>
+                            <th>涉及零部件</th>
+                            <th>责任部门</th>
+                            <th>责任人</th>
+                            <th>是否闭环</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div> -->
+            <!-- <div class="mytabletbody"> -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>问题来源</th>
+                        <th>发生时间</th>
+                        <th>记录人</th>
+                        <th>客户名称</th>
+                        <th>网点</th>
+                        <th>机组铭牌号</th>
+                        <th>产品线名称</th>
+                        <th>产品型号</th>
+                        <th>发生数量</th>
+                        <th>问题描述</th>
+                        <th>失效后果</th>
+                        <th>严重度</th>
+                        <th>故障名称</th>
+                        <th>故障原因</th>
+                        <th>原因分类</th>
+                        <th>现场整改方案</th>
+                        <th>长久改善措施</th>
+                        <th>涉及零部件</th>
+                        <th>责任部门</th>
+                        <th>责任人</th>
+                        <th>是否闭环</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+
+                </tbody>
+            </table>
+            <!-- </div> -->
+
+        </div>
+
+        <div class="echarts">
+            <div class="close">
+                <p>
+                    <input id="closeechar" type="button" value="关闭" />
+                </p>
+            </div>
+            <div class="echart">
+                <div id="echarts1" class="Pie"></div>
+                <div class="name-title">
+                    故障原因分类数量占比
+                </div>
+            </div>
+            <div class="echart">
+                <div id="echarts2" class="Pie"></div>
+                <div class="name-title">
+                    问题来源数量占比
+                </div>
+            </div>
+            <div class="echart">
+                <div id="main1" class="Bar"></div>
+                <div class="name-title">
+                    责任部门数量
+                </div>
+            </div>
+            <div class="echart">
+                <div id="main2" class="Bar"></div>
+                <div class="name-title">
+                    故障分类数量
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="update">
+        <div class="close">
+            <p>
+                <input id="close" type="button" value="关闭" />
+            </p>
+        </div>
+        <iframe id="update" style="width: 100%; height: 100%; border: 0px" src="luru.html"></iframe>
+    </div>
+    <script src="./js/jquery-2.1.1.min.js"></script>
+    <script src="../js/dist/xlsx.full.min.js"></script>
+    <script src="../echarts/js/jquery.min.js"></script>
+    <script src="../echarts/js/echarts.min.js"></script>
+    <script src="../echarts/dist/echarts.min.js"></script>
+    <script src="./js/tools.js"></script>
+    <script src="./js/echarts.js"></script>
+    <script src="./js/shaixuan.js"></script>
+</body>
+
+</html>
