@@ -92,7 +92,7 @@ function PostDate(url, json, fun) {
 function funlogin(json) {
     var row = json[0];
     if (row.id == "0") {
-        window.location.href = "./main.html?name=" + encodeURI(encodeURI(row.mess));
+        window.location.href = "./main.html?name=" + encodeURI(encodeURI(row.mess)) + "&yhgw=" + encodeURI(encodeURI(row.yhgw));
     } else {
         alert(row.mess);
     }

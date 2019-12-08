@@ -1,8 +1,10 @@
 $(document).ready(
     function () {
-        if(decodeURI(GetQueryString("name"))!="管理员")
-        {
+        if(decodeURI(GetQueryString("name"))!="管理员"){
             document.getElementById("menuc").style.display = "none";
+        }
+        if(decodeURI(GetQueryString("yhgw"))!="录入岗位"){
+            document.getElementById("menua").style.display = "none";
         }
         
     	$("#menua").click(
@@ -35,7 +37,7 @@ $(document).ready(
                     right: '-128px'
                 }, 200);
                 $(window.parent.document).find("#mainfrm").attr(
-                    "src", "shaixuan.html?name=" + GetQueryString("name"));
+                    "src", "shaixuan.html?name=" + GetQueryString("name") + "&yhgw=" + GetQueryString("yhgw"));
                 $("#menub").css({
                     "background-image": "url(img/sets.png)",
                     "background-color": "#FFF",

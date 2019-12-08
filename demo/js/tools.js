@@ -219,6 +219,17 @@ Array.prototype.countarr = function () {
     if (agrlen > 0) {
         for (var j = 0; j < agrlen; j++) {
             var temp = {};
+            if (arguments[j] == "sfbh"){
+                for (var i = 0; i < len; i++) {
+                    if (!temp[this[i][arguments[j]]] && temp[this[i][arguments[j]]] != 0) {
+                        temp[this[i][arguments[j]]] = 1;
+                        continue;
+                    }
+                    temp[this[i][arguments[j]]] = parseInt(temp[this[i][arguments[j]]]) + 1;
+                }
+                allarr.push(temp);
+                continue;
+            }
             for (var i = 0; i < len; i++) {
                 if (!temp[this[i][arguments[j]]] && temp[this[i][arguments[j]]] != 0) {
                     temp[this[i][arguments[j]]] = parseInt(this[i]["fssl"]);

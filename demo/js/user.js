@@ -48,7 +48,7 @@ function Init() {
 }
 
 function Saveuser() {
-    var allinput = document.getElementsByClassName("input")[0].getElementsByTagName("input");
+    var allinput = document.getElementsByClassName("input")[0].getElementsByClassName("allinput");
     var json = [];
     var row = {};
     row["ID"] = "";

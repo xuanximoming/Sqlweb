@@ -6,6 +6,7 @@ newinput.addEventListener("click", function () {
     for (var i = 0; i < allobject.length; i++) {
         if (allobject[i].id == "jlr") {
             allobject[i].value = GetQueryString("name");
+            continue;
         }
 
         if (allobject[i].id == "fssj") {

@@ -1,4 +1,11 @@
 //初始化元素
+var writeflag = true;
+if (decodeURI(GetQueryString("yhgw")) != "录入岗位" && decodeURI(GetQueryString("yhgw")) != "管理员") {
+    document.getElementById("del").style.display = "none";
+    document.getElementById("imp").style.display = "none";
+    writeflag = false;
+}
+
 var selected;
 var Globle_json = [];
 (function Init() {
@@ -62,6 +69,7 @@ var Globle_json = [];
         PostDate(window.location.origin + "/WebService.asmx/HttpPostDeleteIfon", "Jsons=" + JSON.stringify(json), refesh);
     }, false);
 
+    //生成图标按钮
     document.getElementById("Chart").addEventListener("click", function () {
         if (Globle_json.length < 1) {
             alert("请查询数据！");
@@ -89,9 +97,13 @@ function setData(json) {
     for (var i = 0; i < json.length; i++) {
         var row = json[i];
         var tr = document.createElement("tr");
-        tr.addEventListener("dblclick", function (e) {
-            dbfind(e);
-        }, false);
+        //绑定表格双击事件
+        //添加查询权限去掉双击事件
+        if (writeflag) {
+            tr.addEventListener("dblclick", function (e) {
+                dbfind(e);
+            }, false);
+        }
         tr.addEventListener("click", function (e) {
             Handleclick(e);
         }, false);

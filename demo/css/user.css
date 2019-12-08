@@ -132,6 +132,13 @@ th {
 	width: 280px;
 }
 
+.reg .input .split .get select {
+	border: 1px solid #ddd;
+	height: 40px;
+	padding: 10px 8px;
+	width: 300px;
+}
+
 .reg .sum {
 	text-align: center;
 }

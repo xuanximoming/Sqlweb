@@ -5,11 +5,12 @@ function DrawEchart(json) {
 
     var data = [];
     var count = [];
-    count = json.countarr('wtly', 'yyfl', 'zrbm', 'gzmc','cpxmc');
-    data = json.unique('wtly', 'yyfl', 'zrbm', 'gzmc','cpxmc');
+    count = json.countarr('wtly', 'sfbh', 'yyfl','zrbm', 'gzmc','cpxmc');
+    data = json.unique('wtly', 'sfbh', 'yyfl','zrbm', 'gzmc','cpxmc');
 
     SetEchartPie(data,count,0,'echarts1');
     SetEchartPie(data,count,1,'echarts2');
+    SetEchartPie(data,count,2,'echarts3');
     SetEchartBar(count, 2, 'main1', '责任\n部门', ['#C23531']);
     SetEchartBar(count, 3, 'main2', '故障\n分类', ['#3398DB']);
     SetEchartBar(count, 4, 'main3', '产品\n线名', ['#91C7AE']);
