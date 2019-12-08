@@ -71,7 +71,9 @@ var process_wb = (function () {
 
 // 将csv转换成表格
 function csv2json(csv) {
-    var rows = csv.split('\n');
+    var mycsv = csv.replace(/\r\n/g,'    ');
+    var mycsv = mycsv.replace(/\"/g,'');
+    var rows = mycsv.split('\n');
     rows.pop(); // 最后一行没用的
     var json = [];
     rows.forEach(function (row, idx) {
@@ -97,9 +99,11 @@ function prompted(json) {
     } else {
         alert(row.mess);
     }
+    document.getElementsByClassName("waiting")[0].style.display = "none";
 }
 
-optionpie = {
+
+var optionpie = {
     tooltip: {
         //鼠标放上是否显示内容
         trigger: 'item',
@@ -116,16 +120,16 @@ optionpie = {
             color: "#000"
         },
         data: [],
-        // formatter: function (name) {
-        //     var oa = option.series[0].data;
-        //     var num = 0;
-        //     for (var i = 0; i < oa.length; i++) {
-        //         num += oa[i].value;
-        //         if (name == oa[i].name) {
-        //             return name + ' ' + oa[i].value;
-        //         }
-        //     }
-        // }
+        formatter: function (name,series) {
+            var oa = series[0].data;
+            var num = 0;
+            for (var i = 0; i < oa.length; i++) {
+                num += oa[i].value;
+                if (name == oa[i].name) {
+                    return name + ' ' + oa[i].value;
+                }
+            }
+        }
     },
     series: [{
         name: '占比',
@@ -155,6 +159,7 @@ optionpie = {
     }]
 };
 
+
 // 指定图表的配置项和数据
 var optionbar = {
     color: ['#3398DB'],
@@ -175,6 +180,12 @@ var optionbar = {
     series: [{
         name: '数量',
         type: 'bar',
+        label: {
+            normal: {
+                show: true,
+                position: 'top'
+            }
+        },
         data: []
     }]
 };

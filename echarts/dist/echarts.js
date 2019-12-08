@@ -86956,7 +86956,8 @@ var LegendView = extendComponentView({
             content = formatter.replace('{name}', name != null ? name : '');
         }
         else if (typeof formatter === 'function') {
-            content = formatter(name);
+            var ss =legendModel.get('series');
+            content = formatter(name,legendModel.get('series'));
         }
 
         itemGroup.add(new Text({

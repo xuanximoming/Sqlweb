@@ -39,6 +39,8 @@ var Globle_json = [];
     //导入按钮添加click事件
     document.getElementById("imp").addEventListener("click", function () {
         document.getElementById('file').click();
+        document.getElementsByClassName("waiting")[0].style.display = "block";
+        document.getElementsByClassName('contents')[0].innerHTML = "Please wait while the data is Importing……";
     }, false);
 
     //下载模板按钮click事件
@@ -51,7 +53,7 @@ var Globle_json = [];
             return;
         var json = [];
         var row = {};
-        if (selected.childNodes[3].innerHTML != GetQueryString("name")) {
+        if (selected.childNodes[3].innerHTML != GetQueryString("name") && GetQueryString("name") != "管理员") {
             alert("此账号非本条记录人！");
             return;
         }
@@ -61,7 +63,7 @@ var Globle_json = [];
     }, false);
 
     document.getElementById("Chart").addEventListener("click", function () {
-        if(Globle_json.length <1 ){
+        if (Globle_json.length < 1) {
             alert("请查询数据！");
             return;
         }
@@ -115,6 +117,8 @@ function initdate() {
 //导出excel数据
 function Expdata() {
     //表头数据
+    document.getElementsByClassName("waiting")[0].style.display = "block";
+    document.getElementsByClassName('contents')[0].innerHTML = "Please wait while the data is Exporting……";
     var ths = document.getElementsByClassName("mythead")[0].children[0].children;
     Jsoncap = [];
     for (var i = 0; i < ths.length; i++) {
@@ -123,7 +127,6 @@ function Expdata() {
         row["name"] = th.innerHTML;
         Jsoncap.push(row);
     }
-    console.log(Jsoncap);
     //表内容部分数据
     var trs = document.getElementsByTagName("tbody")[0].children;
     var json = [];
@@ -136,7 +139,6 @@ function Expdata() {
         }
         json.push(row);
     }
-    console.log(json);
     PostDate(window.location.origin + "/WebService.asmx/HttpPostexpExcle", "Jsoncap=" + JSON.stringify(Jsoncap) + "&Jsons=" + JSON.stringify(json), dowloadexcel)
 }
 
@@ -145,6 +147,8 @@ function dowloadexcel(json) {
         alert(json[0].mess);
         return;
     }
+    var waiting = document.getElementsByClassName("waiting")[0];
+    waiting.style.display = "none";
     window.open(window.location.origin + "/" + json[0].mess, "_blank");
 }
 
@@ -180,7 +184,7 @@ function setiframe(json) {
     var name = GetQueryString("name");
     for (var i = 0; i < allobject.length; i++) {
         allobject[i].disabled = false;
-        if (name != row["jlr"]) {
+        if (name != row["jlr"] && name != '管理员') {
             save.disabled = true;
             allobject[i].disabled = true;
         }

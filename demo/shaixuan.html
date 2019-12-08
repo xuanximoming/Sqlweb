@@ -41,6 +41,7 @@
                         <option value="来料不良">来料不良</option>
                         <option value="安装不良">安装不良</option>
                         <option value="使用不当">使用不当</option>
+                        <option value="需求评审不良">需求评审不良</option>
                     </select>
                 </span>
                 <span>问题来源</span>
@@ -58,6 +59,14 @@
                 <span class="width"><input id="gzmc" class="get" type="text" value="" /></span>
                 <span>涉及零部件</span>
                 <span class="width"><input id="sjlbj" class="get" type="text" value="" /></span>
+                <span>是否闭环</span>
+                <span class="width">
+                    <select class="get" name="sfbh" id="sfbh">
+                        <option value=""></option>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                </span>
             </p>
             <p class="search1">
                 <span>记录人</span>
@@ -112,7 +121,7 @@
             </div> -->
             <!-- <div class="mytabletbody"> -->
             <table>
-                <thead>
+                <thead class="mythead">
                     <tr>
                         <th>序号</th>
                         <th>问题来源</th>
@@ -155,27 +164,37 @@
             <div class="echart">
                 <div id="echarts1" class="Pie"></div>
                 <div class="name-title">
-                    故障原因分类数量占比
+                    问题来源统计
                 </div>
             </div>
             <div class="echart">
                 <div id="echarts2" class="Pie"></div>
                 <div class="name-title">
-                    问题来源数量占比
+                    故障原因分类统计
+                </div>
+            </div>
+            <div class="echart">
+                <div id="main3" class="Bar"></div>
+                <div class="name-title">
+                    产品线问题统计
                 </div>
             </div>
             <div class="echart">
                 <div id="main1" class="Bar"></div>
                 <div class="name-title">
-                    责任部门数量
+                    责任部门统计
                 </div>
             </div>
             <div class="echart">
                 <div id="main2" class="Bar"></div>
                 <div class="name-title">
-                    故障分类数量
+                    故障类别统计
                 </div>
             </div>
+        </div>
+        <div class="waiting">
+            <div class="waitinggif"></div>
+            <div class="contents">Please wait while the data is exporting……</div>
         </div>
     </div>
     <div class="update">
@@ -188,9 +207,7 @@
     </div>
     <script src="./js/jquery-2.1.1.min.js"></script>
     <script src="../js/dist/xlsx.full.min.js"></script>
-    <script src="../echarts/js/jquery.min.js"></script>
-    <script src="../echarts/js/echarts.min.js"></script>
-    <script src="../echarts/dist/echarts.min.js"></script>
+    <script src="../echarts/dist/echarts.js"></script>
     <script src="./js/tools.js"></script>
     <script src="./js/echarts.js"></script>
     <script src="./js/shaixuan.js"></script>
