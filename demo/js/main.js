@@ -3,7 +3,7 @@ $(document).ready(
         if(decodeURI(GetQueryString("name"))!="管理员"){
             document.getElementById("menuc").style.display = "none";
         }
-        if(decodeURI(GetQueryString("yhgw"))!="录入岗位"){
+        if(decodeURI(GetQueryString("yhgw"))!="录入岗位" && decodeURI(GetQueryString("yhgw"))!="管理员"){
             document.getElementById("menua").style.display = "none";
         }
         
