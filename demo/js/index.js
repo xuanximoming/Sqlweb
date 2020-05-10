@@ -1,4 +1,4 @@
-var newinput = document.getElementById("new");
+﻿var newinput = document.getElementById("new");
 var saveinput = document.getElementById("save");
 
 newinput.addEventListener("click", function () {
@@ -48,13 +48,16 @@ saveinput.addEventListener("click", function (e) {
               return;
           }
         }
-        row[allobject[i].id] = allobject[i].value;
+        row[allobject[i].id] = escape2Html(allobject[i].value);
     }
     json.push(row);
     PostDate(json);
 }, false);
 
-
+function escape2Html(str) {
+ var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
+ return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+}
 
 function PostDate(json) {
     var xhr = null;

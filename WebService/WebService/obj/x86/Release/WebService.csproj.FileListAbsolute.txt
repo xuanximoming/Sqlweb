@@ -1,0 +1,7 @@
+F:\Demo\WebService\WebService\bin\WebService.dll
+F:\Demo\WebService\WebService\bin\WebService.pdb
+F:\Demo\WebService\WebService\bin\System.Data.SQLite.dll
+F:\Demo\WebService\WebService\obj\x86\Release\WebService.dll
+F:\Demo\WebService\WebService\obj\x86\Release\WebService.pdb
+F:\Demo\WebService\WebService\bin\Newtonsoft.Json.dll
+F:\Demo\WebService\WebService\obj\x86\Release\WebService.csprojResolveAssemblyReference.cache

@@ -1,4 +1,4 @@
-var X = XLSX;
+﻿var X = XLSX;
 var XW = {
     /* worker message */
     msg: 'xlsx',
@@ -78,7 +78,7 @@ function csv2json(csv) {
     var json = [];
     rows.forEach(function (row, idx) {
 
-        var columns = row.split(',');
+        var columns = row.split('|,');
         if (idx > 1) {
             var JsonRow = {};
             var i = 0;
