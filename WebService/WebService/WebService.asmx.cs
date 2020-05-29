@@ -201,5 +201,20 @@ namespace DrectSoft
             }
             return mess;
         }
+        [WebMethod]
+        public string SaveImage()
+        {
+            string mess = "[{\"id\":\"1\",\"mess\":\"上传失败！\"}]";
+            HttpFileCollection files = HttpContext.Current.Request.Files;
+
+            string type = files[0].ContentType;
+            string path = HttpContext.Current.Server.MapPath("database\\" + files[0].FileName);
+            files[0].SaveAs(path);
+            if (System.IO.File.Exists(path))
+            {
+                mess = "[{\"id\":\"1\",\"mess\":\"上传成功！\"}]";
+            }
+            return mess;
+        }
     }
 }
