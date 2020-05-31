@@ -91,10 +91,6 @@ select::-ms-expand {
     font-size: 10px;
     width: auto;
 }
-
-.wrapper .body #filenames .a a{
-    margin-right: 5px;
-}
 .wrapper .body #filenames button{
     margin-left: 10px;
     color: black;

@@ -1,6 +1,6 @@
 ﻿var newinput = document.getElementById("new");
 var saveinput = document.getElementById("save");
-
+var files = {};
 newinput.addEventListener("click", function () {
     var allobject = document.getElementsByClassName("get");
     for (var i = 0; i < allobject.length; i++) {
@@ -18,7 +18,9 @@ newinput.addEventListener("click", function () {
         }
         allobject[i].disabled = false;
     }
-
+    $('#load').click(function () {
+        document.getElementById("load_xls").click();
+    });
 }, false);
 
 saveinput.addEventListener("click", function (e) {
@@ -43,20 +45,29 @@ saveinput.addEventListener("click", function (e) {
             continue;
         }
         if (allobject[i].id == "fssl") {
-          if(!isRealNum(allobject[i].value)) {
-              alert("数量不是数字格式！");
-              return;
-          }
+            if (!isRealNum(allobject[i].value)) {
+                alert("数量不是数字格式！");
+                return;
+            }
         }
         row[allobject[i].id] = escape2Html(allobject[i].value);
     }
     json.push(row);
-    PostDate(json);
+    uploadFile("/WebService.asmx/SaveImage");
+    //PostDate(json);
 }, false);
 
 function escape2Html(str) {
- var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
- return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+    var arrEntities = {
+        'lt': '<',
+        'gt': '>',
+        'nbsp': ' ',
+        'amp': '&',
+        'quot': '"'
+    };
+    return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) {
+        return arrEntities[t];
+    });
 }
 
 function PostDate(json) {
@@ -99,6 +110,26 @@ function GetQueryString(name) {
     return null;
 }
 
+function SelectFile() {
+    // $(".a").remove();
+    var newfiles = $('#load_xls')[0].files;
+    if (newfiles.length < 1) {
+        return;
+    }
+    for (var i = 0; i < newfiles.length; i++) {
+        $("#filenames").append("<span class='a' name='" + newfiles[i].name + "'>" + newfiles[i].name + "</span>");
+        $("#filenames").append("<span class='a'><a href='#' name='" + newfiles[i].name + "'>删除</a></span>");
+        files[newfiles[i].name] = newfiles[i];
+    }
+    console.log(typeof (files));
+    console.log(files);
+    $(".a a").on("click", function () {
+        var name = this.name;
+        $("[name='" + name + "']").remove();
+        delete files[name];
+    });
+}
+
 function isRealNum(val) {
     // isNaN()函数 把空串 空格 以及NUll 按照0来处理 所以先去除
     if (val === "" || val == null) {
@@ -108,5 +139,83 @@ function isRealNum(val) {
         return true;
     } else {
         return false;
+    }
+}
+
+function guid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0,
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+ function Getsize(files) {
+    var mysize = 0
+    for (var item in files) {
+        if(typeof(files[item]) != "object") continue;
+        mysize += files[item].size;
+    }
+    return mysize;
+}
+
+function uploadFile(url) {
+
+    if (typeof (files) != "undefined" && files != null) {
+        var sumzize = 0;
+        var filessize = Getsize(files);
+        for (var item in files) {
+            var file = files[item];
+            var name = file.name,
+                size = file.size,
+                uuid = guid();
+            succeed = 0;
+            var shardSize = 2 * 1024 * 1024, //以2MB为一个分片
+                shardCount = Math.ceil(size / shardSize); //总片数
+            for (var shardlen = 0; shardlen < shardCount; ++shardlen) {
+                //计算每一片的起始与结束位置
+                var start = shardlen * shardSize,
+                    end = Math.min(size, start + shardSize);
+                sumzize+=(end - start);
+                var myform = new FormData();
+                myform.append("data", file.slice(start, end)); //slice方法用于切出文件的一部分
+                myform.append("name", name);
+                myform.append("uuid", uuid); //uuid
+                myform.append("total", shardCount); //总片数
+                myform.append("index", shardlen + 1); //当前是第几片
+
+                var progressRate = (sumzize / filessize) * 100 + '%';
+                $('.progress div').css('width', progressRate);
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: myform,
+                    async: true, //异步
+                    contentType: false,
+                    processData: false,
+                    // xhr: function () {
+                    //     var xhr = new XMLHttpRequest();
+                    //     xhr.upload.addEventListener('progress', function (e) {
+                    //         console.log(e);
+                    //         //loaded代表上传了多少
+                    //         //total代表总数为多少
+                    //         var progressRate = (e.loaded / e.total) * 100 + '%';
+                    //         //通过设置进度条的宽度达到效果
+                    //         $('.progress div').css('width', progressRate);
+
+                    //     });
+                    //     return xhr;
+                    // },
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (data) {
+                        console.log(data)
+                    }
+                });
+                
+            }
+
+        }
     }
 }

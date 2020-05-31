@@ -94,6 +94,7 @@ function setData(json) {
     }
     //给导出按钮创建事件
     document.getElementById("exp").addEventListener("click", Expdata, false);
+    //绘制表格
     for (var i = 0; i < json.length; i++) {
         var row = json[i];
         var tr = document.createElement("tr");
@@ -108,6 +109,7 @@ function setData(json) {
             Handleclick(e);
         }, false);
         for (var atrr in row) {
+            if(atrr == "fileurl") continue;
             var th = document.createElement("th");
             th.innerHTML = row[atrr];
             th.setAttribute("colmun", atrr);
@@ -124,6 +126,19 @@ function initdate() {
     var day = ("0" + time.getDate()).slice(-2);
     var month = ("0" + (time.getMonth() + 1)).slice(-2);
     return time.getFullYear() + "-" + (month) + "-" + (day);
+}
+
+function escape2Html(str) {
+    var arrEntities = {
+        'lt': '<',
+        'gt': '>',
+        'nbsp': ' ',
+        'amp': '&',
+        'quot': '"'
+    };
+    return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) {
+        return arrEntities[t];
+    });
 }
 
 //导出excel数据
@@ -147,7 +162,7 @@ function Expdata() {
         ths = trs[i].children;
         for (var j = 0; j < ths.length; j++) {
             var th = ths[j];
-            row[th.getAttribute("colmun")] = th.innerHTML;
+            row[th.getAttribute("colmun")] = escape2Html(th.innerHTML);
         }
         json.push(row);
     }
@@ -209,7 +224,49 @@ function setiframe(json) {
             continue;
         }
         allobject[i].value = row[allobject[i].id];
+    }
+    var filename = FormObj.document.getElementById("filenames");
+    var load = FormObj.document.getElementById("load");
+    load.addEventListener("click",function(){
+        FormObj.document.getElementById("load_xls").click();
+    });
+    var fileurls = row["fileurl"].split('/');
+    for(var urlcount = 0;urlcount < fileurls.length;urlcount++){
+        var filenames = fileurls[urlcount].split(';');
+        
+        //显示名称的span
+        var spanname = document.createElement("span");
+        spanname.setAttribute("name", filenames[0]);
+        spanname.className = "a uuid " + filenames[0]; //uuid
+        spanname.innerHTML = filenames[1]; //文件名称
+        filename.appendChild(spanname);
+        //存放a标签的span
+        var spana = document.createElement("span");
+        spana.className = "a " + filenames[0];
+        filename.appendChild(spana);
 
+        //a标签  下载
+        var downa = document.createElement("a");
+        downa.href = window.location.origin + "/Upload/" + filenames[0] + ".dsp"; //uuid 
+        downa.setAttribute("download", filenames[1]);//文件名称
+        downa.innerHTML = "下载";
+        spana.appendChild(downa);
+
+        //a标签  删除
+        var delea = document.createElement("a");
+        delea.href = "#";
+        delea.name = filenames[0];
+        delea.innerHTML = "删除";
+        delea.addEventListener("click", function () {
+            var name = this.name;
+            var objects = FormObj.document.getElementsByClassName(name);
+            var objectscount = objects.length;
+            for (var i = 0; i < objectscount; i++) {
+                objects[0].remove();
+            }
+            PostDate(window.location.origin + "/WebService.asmx/DelImage", "myuuid=" + name, delResult);
+        });
+        spana.appendChild(delea);
     }
 }
 
@@ -233,6 +290,13 @@ function GetQueryString(name) {
     }
     file.addEventListener('change', handleFile, false);
 })();
+
+function delResult(json) {
+    if (json[0].id != "0") {
+        return;
+    }
+    alert(json[0].mess);
+}
 
 function refesh(json) {
     if (json[0].id != "0") {

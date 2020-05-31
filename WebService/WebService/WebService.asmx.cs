@@ -204,17 +204,61 @@ namespace DrectSoft
         [WebMethod]
         public string SaveImage()
         {
-            string mess = "[{\"id\":\"1\",\"mess\":\"上传失败！\"}]";
-            HttpFileCollection files = HttpContext.Current.Request.Files;
-
-            string type = files[0].ContentType;
-            string path = HttpContext.Current.Server.MapPath("database\\" + files[0].FileName);
-            files[0].SaveAs(path);
-            if (System.IO.File.Exists(path))
+            try
             {
-                mess = "[{\"id\":\"1\",\"mess\":\"上传成功！\"}]";
+                string mess = "[{\"id\":\"1\",\"mess\":\"上传失败！\"}]";
+
+                UploadFile uploadfile = new UploadFile();
+                string resoult = uploadfile.SaveFile(HttpContext.Current);
+
+                switch (resoult)
+                {
+                    case "0":
+                        mess = "[{\"id\":\"0\",\"mess\":\"上传成功！\"}]";
+                        break;
+                    case "1":
+                        mess = "[{\"id\":\"1\",\"mess\":\"上传失败！\"}]";
+                        break;
+                    default:
+                        mess = "[{\"id\":\"0\",\"mess\":\"上传" + resoult + "%！\"}]";
+                        break;
+                }
+                return mess;
             }
-            return mess;
+            catch (Exception ex)
+            {
+                return "[{\"id\":\"1\",\"mess\":\"" + ex.Message + "\"}]";
+            }
+        }
+
+        [WebMethod]
+        public string DelImage(string myuuid)
+        {
+            try
+            {
+                string mess = "[{\"id\":\"1\",\"mess\":\"删除失败！\"}]";
+                UploadFile uploadfile = new UploadFile();
+                string resoult = uploadfile.DelFile(myuuid);
+
+                switch (resoult)
+                {
+                    case "0":
+                        mess = "[{\"id\":\"0\",\"mess\":\"删除成功！\"}]";
+                        break;
+                    case "1":
+                        mess = "[{\"id\":\"1\",\"mess\":\"删除失败！\"}]";
+                        break;
+                    default:
+                        mess = "[{\"id\":\"0\",\"mess\":\"删除" + resoult + "%！\"}]";
+                        break;
+                }
+
+                return mess;
+            }
+            catch (Exception ex)
+            {
+                return "[{\"id\":\"1\",\"mess\":\"" + ex.Message + "\"}]";
+            }
         }
     }
 }

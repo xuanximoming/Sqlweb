@@ -12,3 +12,10 @@ E:\Demo\Sqlweb\WebService\WebService\bin\System.Data.SQLite.dll
 E:\Demo\Sqlweb\WebService\WebService\obj\x86\Debug\WebService.csprojResolveAssemblyReference.cache
 E:\Demo\Sqlweb\WebService\WebService\obj\x86\Debug\WebService.dll
 E:\Demo\Sqlweb\WebService\WebService\obj\x86\Debug\WebService.pdb
+F:\Demo\Sqlweb\WebService\WebService\bin\WebService.dll
+F:\Demo\Sqlweb\WebService\WebService\bin\WebService.pdb
+F:\Demo\Sqlweb\WebService\WebService\bin\Newtonsoft.Json.dll
+F:\Demo\Sqlweb\WebService\WebService\bin\System.Data.SQLite.dll
+F:\Demo\Sqlweb\WebService\WebService\obj\x86\Debug\WebService.csprojResolveAssemblyReference.cache
+F:\Demo\Sqlweb\WebService\WebService\obj\x86\Debug\WebService.dll
+F:\Demo\Sqlweb\WebService\WebService\obj\x86\Debug\WebService.pdb

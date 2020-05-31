@@ -6,23 +6,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>F:\wwwroot\Sqlweb</_PublishTargetUrl>
+    <_PublishTargetUrl>F:\Demo\Sqlweb</_PublishTargetUrl>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>x86</LastUsedPlatform>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>09/01/2019 15:29:45</publishTime>
+      <publishTime>05/28/2020 19:48:33</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
-      <publishTime>06/09/2019 00:50:18</publishTime>
+      <publishTime>05/28/2020 19:48:33</publishTime>
     </File>
     <File Include="bin/WebService.dll">
-      <publishTime>10/23/2019 16:09:35</publishTime>
+      <publishTime>05/31/2020 23:36:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/12/2019 22:06:12</publishTime>
+      <publishTime>05/31/2020 23:36:47</publishTime>
     </File>
     <File Include="WebService.asmx">
-      <publishTime>10/09/2019 21:34:11</publishTime>
+      <publishTime>05/28/2020 19:48:33</publishTime>
     </File>
   </ItemGroup>
 </Project>

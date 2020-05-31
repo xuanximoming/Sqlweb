@@ -79,6 +79,7 @@
     <Compile Include="CharSpellCode.cs" />
     <Compile Include="MySQLiteHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UploadFile.cs" />
     <Compile Include="WebService.asmx.cs">
       <DependentUpon>WebService.asmx</DependentUpon>
       <SubType>Component</SubType>

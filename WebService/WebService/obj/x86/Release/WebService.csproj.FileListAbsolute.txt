@@ -5,3 +5,17 @@ F:\Demo\WebService\WebService\obj\x86\Release\WebService.dll
 F:\Demo\WebService\WebService\obj\x86\Release\WebService.pdb
 F:\Demo\WebService\WebService\bin\Newtonsoft.Json.dll
 F:\Demo\WebService\WebService\obj\x86\Release\WebService.csprojResolveAssemblyReference.cache
+F:\Demo\Sqlweb\WebService\WebService\bin\WebService.dll
+F:\Demo\Sqlweb\WebService\WebService\bin\WebService.pdb
+F:\Demo\Sqlweb\WebService\WebService\bin\Newtonsoft.Json.dll
+F:\Demo\Sqlweb\WebService\WebService\bin\System.Data.SQLite.dll
+F:\Demo\Sqlweb\WebService\WebService\obj\x86\Release\WebService.csprojResolveAssemblyReference.cache
+F:\Demo\Sqlweb\WebService\WebService\obj\x86\Release\WebService.dll
+F:\Demo\Sqlweb\WebService\WebService\obj\x86\Release\WebService.pdb
+E:\Demo\Sqlweb\WebService\WebService\bin\WebService.dll
+E:\Demo\Sqlweb\WebService\WebService\bin\WebService.pdb
+E:\Demo\Sqlweb\WebService\WebService\bin\Newtonsoft.Json.dll
+E:\Demo\Sqlweb\WebService\WebService\bin\System.Data.SQLite.dll
+E:\Demo\Sqlweb\WebService\WebService\obj\x86\Release\WebService.csprojResolveAssemblyReference.cache
+E:\Demo\Sqlweb\WebService\WebService\obj\x86\Release\WebService.dll
+E:\Demo\Sqlweb\WebService\WebService\obj\x86\Release\WebService.pdb
