@@ -230,43 +230,45 @@ function setiframe(json) {
     load.addEventListener("click",function(){
         FormObj.document.getElementById("load_xls").click();
     });
-    var fileurls = row["fileurl"].split('/');
-    for(var urlcount = 0;urlcount < fileurls.length;urlcount++){
-        var filenames = fileurls[urlcount].split(';');
-        
-        //显示名称的span
-        var spanname = document.createElement("span");
-        spanname.setAttribute("name", filenames[0]);
-        spanname.className = "a uuid " + filenames[0]; //uuid
-        spanname.innerHTML = filenames[1]; //文件名称
-        filename.appendChild(spanname);
-        //存放a标签的span
-        var spana = document.createElement("span");
-        spana.className = "a " + filenames[0];
-        filename.appendChild(spana);
-
-        //a标签  下载
-        var downa = document.createElement("a");
-        downa.href = window.location.origin + "/Upload/" + filenames[0] + ".dsp"; //uuid 
-        downa.setAttribute("download", filenames[1]);//文件名称
-        downa.innerHTML = "下载";
-        spana.appendChild(downa);
-
-        //a标签  删除
-        var delea = document.createElement("a");
-        delea.href = "#";
-        delea.name = filenames[0];
-        delea.innerHTML = "删除";
-        delea.addEventListener("click", function () {
-            var name = this.name;
-            var objects = FormObj.document.getElementsByClassName(name);
-            var objectscount = objects.length;
-            for (var i = 0; i < objectscount; i++) {
-                objects[0].remove();
-            }
-            PostDate(window.location.origin + "/WebService.asmx/DelImage", "myuuid=" + name, delResult);
-        });
-        spana.appendChild(delea);
+    if(row["fileurl"] != "" && row["fileurl"].split('/').length > 1){
+        var fileurls = row["fileurl"].split('/');
+        for(var urlcount = 0;urlcount < fileurls.length;urlcount++){
+            var filenames = fileurls[urlcount].split(';');
+            
+            //显示名称的span
+            var spanname = document.createElement("span");
+            spanname.setAttribute("name", filenames[0]);
+            spanname.className = "a uuid " + filenames[0]; //uuid
+            spanname.innerHTML = filenames[1]; //文件名称
+            filename.appendChild(spanname);
+            //存放a标签的span
+            var spana = document.createElement("span");
+            spana.className = "a " + filenames[0];
+            filename.appendChild(spana);
+    
+            //a标签  下载
+            var downa = document.createElement("a");
+            downa.href = window.location.origin + "/Upload/" + filenames[0] + ".dsp"; //uuid 
+            downa.setAttribute("download", filenames[1]);//文件名称
+            downa.innerHTML = "下载";
+            spana.appendChild(downa);
+    
+            //a标签  删除
+            var delea = document.createElement("a");
+            delea.href = "#";
+            delea.name = filenames[0];
+            delea.innerHTML = "删除";
+            delea.addEventListener("click", function () {
+                var name = this.name;
+                var objects = FormObj.document.getElementsByClassName(name);
+                var objectscount = objects.length;
+                for (var i = 0; i < objectscount; i++) {
+                    objects[0].remove();
+                }
+                PostDate(window.location.origin + "/WebService.asmx/DelImage", "myuuid=" + name, delResult);
+            });
+            spana.appendChild(delea);
+        }
     }
 }
 
