@@ -109,7 +109,7 @@ function setData(json) {
             Handleclick(e);
         }, false);
         for (var atrr in row) {
-            if(atrr == "fileurl") continue;
+            if (atrr == "fileurl") continue;
             var th = document.createElement("th");
             th.innerHTML = row[atrr];
             th.setAttribute("colmun", atrr);
@@ -227,14 +227,14 @@ function setiframe(json) {
     }
     var filename = FormObj.document.getElementById("filenames");
     var load = FormObj.document.getElementById("load");
-    load.addEventListener("click",function(){
+    load.addEventListener("click", function () {
         FormObj.document.getElementById("load_xls").click();
     });
-    if(row["fileurl"] != "" && row["fileurl"].split('/').length > 1){
+    if (row["fileurl"] != "" && row["fileurl"].split('/').length > 1) {
         var fileurls = row["fileurl"].split('/');
-        for(var urlcount = 0;urlcount < fileurls.length;urlcount++){
+        for (var urlcount = 0; urlcount < fileurls.length; urlcount++) {
             var filenames = fileurls[urlcount].split(';');
-            
+
             //显示名称的span
             var spanname = document.createElement("span");
             spanname.setAttribute("name", filenames[0]);
@@ -245,14 +245,14 @@ function setiframe(json) {
             var spana = document.createElement("span");
             spana.className = "a " + filenames[0];
             filename.appendChild(spana);
-    
+
             //a标签  下载
             var downa = document.createElement("a");
             downa.href = window.location.origin + "/Upload/" + filenames[0] + ".dsp"; //uuid 
             downa.setAttribute("download", filenames[1]);//文件名称
             downa.innerHTML = "下载";
             spana.appendChild(downa);
-    
+
             //a标签  删除
             var delea = document.createElement("a");
             delea.href = "#";
@@ -268,6 +268,15 @@ function setiframe(json) {
                 PostDate(window.location.origin + "/WebService.asmx/DelImage", "myuuid=" + name, delResult);
             });
             spana.appendChild(delea);
+        }
+    }
+    else {
+        var objects = FormObj.document.getElementsByClassName("a");
+        var objectscount = objects.length;
+        if(objectscount > 0){
+            for (var i = 0; i < objectscount; i++) {
+                objects[0].remove();
+            }
         }
     }
 }
