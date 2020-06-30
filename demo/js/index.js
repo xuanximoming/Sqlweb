@@ -1,6 +1,7 @@
 ﻿var newinput = document.getElementById("new");
 var saveinput = document.getElementById("save");
 var files = {};
+var click = true;
 newinput.addEventListener("click", function () {
     var allobject = document.getElementsByClassName("get");
     for (var i = 0; i < allobject.length; i++) {
@@ -18,9 +19,12 @@ newinput.addEventListener("click", function () {
         }
         allobject[i].disabled = false;
     }
-    $('#load').click(function () {
-        document.getElementById("load_xls").click();
-    });
+    if(click){
+        $('#load').click(function () {
+            document.getElementById("load_xls").click();
+        }); 
+        click = false;
+    }
 }, false);
 
 saveinput.addEventListener("click", function (e) {

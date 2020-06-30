@@ -8,6 +8,7 @@ if (decodeURI(GetQueryString("yhgw")) != "录入岗位" && decodeURI(GetQueryStr
 
 var selected;
 var Globle_json = [];
+var click = true;
 (function Init() {
     //初始化控件
     var fssj1 = document.getElementById("fssj1");
@@ -226,11 +227,25 @@ function setiframe(json) {
         allobject[i].value = row[allobject[i].id];
     }
     var filename = FormObj.document.getElementById("filenames");
+
+   if(click) {
     var load = FormObj.document.getElementById("load");
     load.addEventListener("click", function () {
         FormObj.document.getElementById("load_xls").click();
     });
-    if (row["fileurl"] != "" && row["fileurl"].split('/').length > 1) {
+    click = false;
+   }
+    
+
+    var mya = FormObj.document.getElementsByClassName("a");
+    var myacount = mya.length;
+    if (myacount > 0) {
+        for (var i = 0; i < myacount; i++) {
+            mya[0].remove();
+        }
+    }
+
+    if (row["fileurl"] != "" && row["fileurl"].split('/').length > 0) {
         var fileurls = row["fileurl"].split('/');
         for (var urlcount = 0; urlcount < fileurls.length; urlcount++) {
             var filenames = fileurls[urlcount].split(';');
@@ -268,15 +283,6 @@ function setiframe(json) {
                 PostDate(window.location.origin + "/WebService.asmx/DelImage", "myuuid=" + name, delResult);
             });
             spana.appendChild(delea);
-        }
-    }
-    else {
-        var objects = FormObj.document.getElementsByClassName("a");
-        var objectscount = objects.length;
-        if(objectscount > 0){
-            for (var i = 0; i < objectscount; i++) {
-                objects[0].remove();
-            }
         }
     }
 }
